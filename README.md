@@ -115,18 +115,18 @@ stop()
 
 **Generator ↔ Visualizer contract:**
 ```
-┌──────────────────────┐       yield (colors, callouts, status)       ┌──────────────┐
-│  Algorithm Generator │ ─────────────────────────────────────────▶   │  Visualizer   │
-│  (sorting.py /       │                                              │  _run_sort()  │
-│   searching.py)      │  ◀── next() called each iteration ────────  │  _run_search()│
-└──────────────────────┘                                              └──────┬───────┘
+┌──────────────────────┐       yield (colors, callouts, status)       ┌────────────────┐
+│  Algorithm Generator │ ─────────────────────────────────────────▶   │  Visualizer    │
+│  (sorting.py /       │                                              │  _run_sort()   │
+│   searching.py)      │  ◀── next() called each iteration ────────   │  _run_search() │
+└──────────────────────┘                                              └──────┬─────────┘
                                                                              │
                                                                              ▼
-                                                                      ┌──────────────┐
+                                                                      ┌───────────────┐
                                                                       │ ArrayCanvas   │
                                                                       │  .draw()      │
                                                                       │ (Matplotlib)  │
-                                                                      └──────────────┘
+                                                                      └───────────────┘
 ```
 
 The generator never imports or references any UI code — it only yields data tuples. The visualizer is the sole consumer that translates those tuples into visual frames.
